@@ -1,5 +1,5 @@
 /*
- LumX v0.3.83
+ LumX 
  (c) 2014-2015 LumApps http://ui.lumapps.com
  License: MIT
 */
@@ -1386,7 +1386,7 @@ angular.module('lumx.file-input', [])
                     {
                         $timeout(function()
                         {
-                            setFileName($input.val());
+                            setFileName($input[0].files[0].name);
                             element.addClass('input-file--is-focused');
                         });
 
@@ -1404,10 +1404,9 @@ angular.module('lumx.file-input', [])
 
                 function setFileName(val)
                 {
-                    $input.val('');
                     if (val)
                     {
-                        $fileName.text(val.replace(/C:\\fakepath\\/i, ''));
+                        $fileName.text(val);
 
                         element.addClass('input-file--is-active');
                     }
