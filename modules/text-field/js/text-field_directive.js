@@ -38,16 +38,10 @@ angular.module('lumx.text-field', [])
                     model: undefined
                 };
 
-                function focusUpdate()
+                function focusUpdate(event)
                 {
-                    scope.data.focused = true;
-                    scope.$apply();
-                }
-
-                function blurUpdate()
-                {
-                    scope.data.focused = false;
-                    scope.$apply();
+                    scope.data.focused = event.data;
+                    if (!scope.$root.$$phase) scope.$apply();
                 }
 
                 function modelUpdate()
@@ -74,7 +68,7 @@ angular.module('lumx.text-field', [])
                     });
                 }
 
-                transclude(function()
+                transclude(scope.$root, function()
                 {
                     $field = element.find('textarea');
 
@@ -93,8 +87,8 @@ angular.module('lumx.text-field', [])
                     }
 
                     $field.addClass('text-field__input');
-                    $field.on('focus', focusUpdate);
-                    $field.on('blur', blurUpdate);
+                    $field.on('focus', true, focusUpdate);
+                    $field.on('blur', false, focusUpdate);
                     $field.on('propertychange change click keyup input paste', valueUpdate);
 
                     modelController = $field.data('$ngModelController');
