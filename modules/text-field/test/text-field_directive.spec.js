@@ -36,14 +36,27 @@ describe('text-field directive', function() {
         expect(valueChanged).toHaveBeenCalledWith('foobar2');
     });
 
-    it('should add .text-field--is-focused when input element gets focus', function() {
-        $compile(createWithInput())(viewScope).appendTo(viewElem);
-        $rootScope.$digest();
-        var textField = viewElem.children();
-        expect(textField.hasClass('text-field--is-focused')).toBe(false);
+    describe('should add .text-field--is-focused when input element gets focus', function() {
+        var textField;
 
-        $('input').triggerHandler('focus');
+        beforeEach(function() {
+            $compile(createWithInput())(viewScope).appendTo(viewElem);
+            $rootScope.$digest();
+            textField = viewElem.children();
+            expect(textField.hasClass('text-field--is-focused')).toBe(false);
+        });
+        afterEach(function() {
+            expect(textField.hasClass('text-field--is-focused')).toBe(true);
+        });
 
-        expect(textField.hasClass('text-field--is-focused')).toBe(true);
+        it('and focus event is triggered when digest is NOT IN progress', function() {
+            $('input').triggerHandler('focus');
+        });
+
+        it('and focus event is triggered when digest is IN progress', function() {
+            $rootScope.$apply(function() {
+                $('input').triggerHandler('focus');
+            });
+        });
     });
 });
