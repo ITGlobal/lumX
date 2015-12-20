@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "angular-route": "latest",
-    "highlightjs": "latest"
+    "highlightjs": "latest",
+    "angular-mocks": "~1.4.8"
   }
 }

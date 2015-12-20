@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     path = require('path'),
+    KarmaServer = require('karma').Server;
     minimist = require('minimist'),
     summary = require('jshint-summary'),
     del = require('del'),
@@ -8,7 +9,7 @@ var gulp = require('gulp'),
 var paths = {
     js: [
         'core/js/**/*.js',
-        'modules/**/*.js'
+        'modules/*/js/**/*.js'
     ],
     scss: [
         'core/scss/**/*.scss',
@@ -41,6 +42,41 @@ var paths = {
         'libs/**/*'
     ]
 };
+
+var karmaFiles = {
+    deps: [
+        'libs/jquery/dist/jquery.js',
+        'libs/velocity/velocity.js',
+        'libs/jquery/dist/jquery.js',
+        'libs/moment/moment.js',
+        'libs/angular/angular.js'
+    ],
+    build: [
+        {pattern: 'build/fonts/**', included: false},
+        'build/lumx.css',
+        'build/js/!(templates|vendor)/**/*.js',
+        'build/js/templates/**/*.js',
+        'build/js/lumx.js'
+    ],
+    dist: [
+        {pattern: 'dist/fonts/**', included: false},
+        'dist/lumx.css',
+        'dist/lumx.js'
+    ],
+    test: [
+        'libs/angular-mocks/angular-mocks.js',
+        'modules/*/test/**/*.spec.js'
+    ]
+};
+
+function runTests(singleRun, files, done)
+{
+    new KarmaServer({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: singleRun,
+        files: karmaFiles.deps.concat(files, karmaFiles.test)
+    }, done).start();
+}
 
 function watcherWithCache(name, src, tasks)
 {
@@ -349,6 +385,11 @@ gulp.task('dist:scripts', ['tpl:dropdown', 'tpl:file-input', 'tpl:text-field', '
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('dist:test', function(done)
+{
+    runTests(true, karmaFiles.dist, done);
+});
+
 gulp.task('serve', ['watch'], function() {
     return plugins.connect.server({
         root: 'build'
@@ -375,16 +416,12 @@ gulp.task('watch', ['build'], function()
     watcherWithCache('tpl:radio-button', 'modules/radio-button/views/*.html', ['tpl:radio-button']);
     watcherWithCache('tpl:switch', 'modules/switch/views/*.html', ['tpl:switch']);
     watcherWithCache('tpl:fab', 'modules/fab/views/*.html', ['tpl:fab']);
+    runTests(false, karmaFiles.build);
 });
 
 gulp.task('clean', ['clean:build', 'clean:dist']);
 
 gulp.task('build', ['lint', 'scss', 'fonts', 'demo', 'examples', 'libs', 'tpl:dropdown', 'tpl:file-input', 'tpl:text-field', 'tpl:search-filter', 'tpl:select', 'tpl:tabs', 'tpl:date-picker', 'tpl:progress', 'tpl:button', 'tpl:checkbox', 'tpl:radio-button', 'tpl:switch', 'tpl:fab']);
-gulp.task('dist', ['clean:dist'], function()
-{
-    gulp.start('dist:css');
-    gulp.start('dist:scripts');
-    gulp.start('dist:fonts');
-});
+gulp.task('dist', plugins.sequence('clean:dist', ['dist:css', 'dist:scripts', 'dist:fonts'], 'dist:test'));
 
 gulp.task('default', ['watch']);
