@@ -391,8 +391,20 @@ gulp.task('dist:test', function(done)
 });
 
 gulp.task('serve', ['watch'], function() {
+    // the middleware rewrites non-file requests to main page
+    function spa(req, res, next)
+    {
+        if (!/\.\w+$/.test(req.url))
+        {
+            req.url = '/';
+            req.originalUrl = '/';
+        }
+        next();
+    }
+
     return plugins.connect.server({
-        root: 'build'
+        root: 'build',
+        middleware: function(connect, opt) { return [spa]; }
     });
 });
 
