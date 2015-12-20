@@ -59,4 +59,29 @@ describe('text-field directive', function() {
             });
         });
     });
+
+    describe('should remove .text-field--is-focused when input element loses focus', function() {
+        var textField;
+
+        beforeEach(function() {
+            $compile(createWithInput())(viewScope).appendTo(viewElem);
+            $rootScope.$digest();
+            textField = viewElem.children();
+            $('input').triggerHandler('focus');
+            expect(textField.hasClass('text-field--is-focused')).toBe(true);
+        });
+        afterEach(function() {
+            expect(textField.hasClass('text-field--is-focused')).toBe(false);
+        });
+
+        it('and blur event is triggered when digest is NOT IN progress', function() {
+            $('input').triggerHandler('blur');
+        });
+
+        it('and blur event is triggered when digest is IN progress', function() {
+            $rootScope.$apply(function() {
+                $('input').triggerHandler('blur');
+            });
+        });
+    });
 });
