@@ -44,7 +44,7 @@
     "jquery": "latest",
     "velocity": "latest",
     "moment": "latest",
-    "bourbon": "latest",
+    "bourbon": "4.2.7",
     "mdi": "1.2.65"
   },
   "devDependencies": {
