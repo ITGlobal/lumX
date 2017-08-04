@@ -1,6 +1,6 @@
 /*
  LumX 
- (c) 2014-2015 LumApps http://ui.lumapps.com
+ (c) 2014-2017 LumApps http://ui.lumapps.com
  License: MIT
 */
 /* global angular */
@@ -4536,23 +4536,23 @@ angular.module('lumx.tooltip', [])
         };
     });
 
-angular.module("lumx.dropdown").run(['$templateCache', function(a) { a.put('dropdown.html', '<div class="dropdown" ng-transclude="child"></div>\n' +
++(function() { var m; try { m = angular.module("lumx.dropdown"); } catch (e) { m = angular.module("lumx.dropdown", []); } m.run(['$templateCache', function(a) { a.put('/modules/dropdown/views/dropdown.html', '<div class="dropdown" ng-transclude="child"></div>\n' +
     '');
-	a.put('dropdown-toggle.html', '<div ng-transclude="child"></div>\n' +
+	a.put('/modules/dropdown/views/dropdown-toggle.html', '<div ng-transclude="child"></div>\n' +
     '');
-	a.put('dropdown-menu.html', '<div class="dropdown-menu dropdown-menu--{{ lxDropdownPosition }}" ng-class="{ \'dropdown__menu--is-dropped\': lxDropdownIsDropped }">\n' +
+	a.put('/modules/dropdown/views/dropdown-menu.html', '<div class="dropdown-menu dropdown-menu--{{ lxDropdownPosition }}" ng-class="{ \'dropdown__menu--is-dropped\': lxDropdownIsDropped }">\n' +
     '    <div class="dropdown-menu__content" ng-transclude="child" ng-if="lxDropdownIsDropped"></div>\n' +
     '</div>\n' +
     '');
-	 }]);
-angular.module("lumx.file-input").run(['$templateCache', function(a) { a.put('file-input.html', '<div class="input-file">\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.file-input"); } catch (e) { m = angular.module("lumx.file-input", []); } m.run(['$templateCache', function(a) { a.put('/modules/file-input/views/file-input.html', '<div class="input-file">\n' +
     '    <span class="input-file__label" ng-bind-html="label | unsafe"></span>\n' +
     '    <span class="input-file__filename"></span>\n' +
     '    <input type="file">\n' +
     '</div>\n' +
     '');
-	 }]);
-angular.module("lumx.text-field").run(['$templateCache', function(a) { a.put('text-field.html', '<div class="text-field text-field--{{ theme }}-theme"\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.text-field"); } catch (e) { m = angular.module("lumx.text-field", []); } m.run(['$templateCache', function(a) { a.put('/modules/text-field/views/text-field.html', '<div class="text-field text-field--{{ theme }}-theme"\n' +
     '     ng-class="{ \'text-field--is-valid\': valid(),\n' +
     '                 \'text-field--has-error\': error(),\n' +
     '                 \'text-field--is-disabled\': disabled(),\n' +
@@ -4570,8 +4570,8 @@ angular.module("lumx.text-field").run(['$templateCache', function(a) { a.put('te
     '    <div ng-transclude="1"></div>\n' +
     '</div>\n' +
     '');
-	 }]);
-angular.module("lumx.search-filter").run(['$templateCache', function(a) { a.put('search-filter.html', '<div class="search-filter search-filter--{{ theme }}-theme"\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.search-filter"); } catch (e) { m = angular.module("lumx.search-filter", []); } m.run(['$templateCache', function(a) { a.put('/modules/search-filter/views/search-filter.html', '<div class="search-filter search-filter--{{ theme }}-theme"\n' +
     '     ng-class="{ \'search-filter--is-focused\': model,\n' +
     '                 \'search-filter--is-closed\': closed }">\n' +
     '    <div class="search-filter__container">\n' +
@@ -4580,8 +4580,8 @@ angular.module("lumx.search-filter").run(['$templateCache', function(a) { a.put(
     '        <span class="search-filter__cancel" ng-click="clear()"><i class="mdi mdi-close-circle"></i></span>\n' +
     '    </div>\n' +
     '</div>');
-	 }]);
-angular.module("lumx.select").run(['$templateCache', function(a) { a.put('select.html', '<div class="lx-select"\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.select"); } catch (e) { m = angular.module("lumx.select", []); } m.run(['$templateCache', function(a) { a.put('/modules/select/views/select.html', '<div class="lx-select"\n' +
     '     ng-class="{ \'lx-select--is-unique\': !lxSelectMultiple,\n' +
     '                 \'lx-select--is-multiple\': lxSelectMultiple,\n' +
     '                 \'lx-select--is-valid\': lxSelectValid(),\n' +
@@ -4592,7 +4592,7 @@ angular.module("lumx.select").run(['$templateCache', function(a) { a.put('select
     '    </lx-dropdown>\n' +
     '</div>\n' +
     '');
-	a.put('select-selected.html', '<div lx-dropdown-toggle>\n' +
+	a.put('/modules/select/views/select-selected.html', '<div lx-dropdown-toggle>\n' +
     '    <span class="lx-select__floating-label" ng-if="lxSelectGetSelectedElements().length !== 0 && lxSelectFloatingLabel" ng-bind-html="lxSelectTrust(lxSelectPlaceholder)"></span>\n' +
     '\n' +
     '    <div class="lx-select__selected"\n' +
@@ -4615,7 +4615,7 @@ angular.module("lumx.select").run(['$templateCache', function(a) { a.put('select
     '    </div>\n' +
     '</div>\n' +
     '');
-	a.put('select-choices.html', '<lx-dropdown-menu class="lx-select__choices {{ lxSelectCustom }}">\n' +
+	a.put('/modules/select/views/select-choices.html', '<lx-dropdown-menu class="lx-select__choices {{ lxSelectCustom }}">\n' +
     '    <ul ng-if="!lxSelectTree">\n' +
     '        <li ng-if="lxSelectGetSelectedElements().length > 0">\n' +
     '            <lx-select-choices-selected class="lx-select__chosen"\n' +
@@ -4669,8 +4669,8 @@ angular.module("lumx.select").run(['$templateCache', function(a) { a.put('select
     '    </ul>\n' +
     '</lx-dropdown-menu>\n' +
     '');
-	 }]);
-angular.module("lumx.tabs").run(['$templateCache', function(a) { a.put('tabs.html', '<div class="tabs tabs--theme-{{ lxTabsLinksTc }} tabs--layout-{{ lxTabsLayout }}"\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.tabs"); } catch (e) { m = angular.module("lumx.tabs", []); } m.run(['$templateCache', function(a) { a.put('/modules/tabs/views/tabs.html', '<div class="tabs tabs--theme-{{ lxTabsLinksTc }} tabs--layout-{{ lxTabsLayout }}"\n' +
     '     ng-class="{ \'tabs--no-divider\': lsTabsNoDivider }">\n' +
     '\n' +
     '    <button class="tabs__pagination-left btn btn--m bgc-{{ lxTabsLinksBgc }}"\n' +
@@ -4706,10 +4706,10 @@ angular.module("lumx.tabs").run(['$templateCache', function(a) { a.put('tabs.htm
     '    <div class="tabs__indicator bgc-{{ lxTabsIndicator }}"></div>\n' +
     '</div>\n' +
     '');
-	a.put('tab.html', '<div class="tabs-pane" ng-if="lxTabIndex === lxTabData.lxTabsActiveTab" ng-transclude="child"></div>\n' +
+	a.put('/modules/tabs/views/tab.html', '<div class="tabs-pane" ng-if="lxTabIndex === lxTabData.lxTabsActiveTab" ng-transclude="child"></div>\n' +
     '');
-	 }]);
-angular.module("lumx.date-picker").run(['$templateCache', function(a) { a.put('date-picker.html', '<div class="lx-date" ng-class="{ \'lx-date--fixed-label\': fixedLabel(),\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.date-picker"); } catch (e) { m = angular.module("lumx.date-picker", []); } m.run(['$templateCache', function(a) { a.put('/modules/date-picker/views/date-picker.html', '<div class="lx-date" ng-class="{ \'lx-date--fixed-label\': fixedLabel(),\n' +
     '                                 \'lx-date--with-icon\': icon && fixedLabel() }">\n' +
     '\n' +
     '    <div class="text-field__icon" ng-if="icon && fixedLabel() ">\n' +
@@ -4802,8 +4802,8 @@ angular.module("lumx.date-picker").run(['$templateCache', function(a) { a.put('d
     '    </div>\n' +
     '</div>\n' +
     '');
-	 }]);
-angular.module("lumx.progress").run(['$templateCache', function(a) { a.put('progress.html', '<div class="progress-container progress-container--{{ lxProgress.lxType }} progress-container--{{ lxProgress.lxColor }}"\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.progress"); } catch (e) { m = angular.module("lumx.progress", []); } m.run(['$templateCache', function(a) { a.put('/modules/progress/views/progress.html', '<div class="progress-container progress-container--{{ lxProgress.lxType }} progress-container--{{ lxProgress.lxColor }}"\n' +
     '     ng-style="lxProgress.getProgressDiameter()">\n' +
     '    <div class="progress-circular-wrapper" ng-if="lxProgress.lxType === \'circular\'">\n' +
     '        <div class="progress-circular">\n' +
@@ -4828,13 +4828,13 @@ angular.module("lumx.progress").run(['$templateCache', function(a) { a.put('prog
     '    </div>\n' +
     '</div>\n' +
     '');
-	 }]);
-angular.module("lumx.button").run(['$templateCache', function(a) { a.put('', '<a ng-transclude lx-ripple></a>\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.button"); } catch (e) { m = angular.module("lumx.button", []); } m.run(['$templateCache', function(a) { a.put('/modules/button/views/link.html', '<a ng-transclude lx-ripple></a>\n' +
     '');
-	a.put('', '<button ng-transclude lx-ripple></button>\n' +
+	a.put('/modules/button/views/button.html', '<button ng-transclude lx-ripple></button>\n' +
     '');
-	 }]);
-angular.module("lumx.checkbox").run(['$templateCache', function(a) { a.put('', '<div class="checkbox checkbox--{{ lxCheckbox.lxColor }}">\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.checkbox"); } catch (e) { m = angular.module("lumx.checkbox", []); } m.run(['$templateCache', function(a) { a.put('/modules/checkbox/views/checkbox.html', '<div class="checkbox checkbox--{{ lxCheckbox.lxColor }}">\n' +
     '    <input id="{{ lxCheckbox.getCheckboxId() }}"\n' +
     '           type="checkbox"\n' +
     '           class="checkbox__input"\n' +
@@ -4849,14 +4849,14 @@ angular.module("lumx.checkbox").run(['$templateCache', function(a) { a.put('', '
     '    <ng-transclude-replace ng-if="lxCheckbox.getCheckboxHasChildren()"></ng-transclude-replace>\n' +
     '</div>\n' +
     '');
-	a.put('', '<label for="{{ lxCheckboxLabel.getCheckboxId() }}" class="checkbox__label" ng-transclude></label>\n' +
+	a.put('/modules/checkbox/views/checkbox-label.html', '<label for="{{ lxCheckboxLabel.getCheckboxId() }}" class="checkbox__label" ng-transclude></label>\n' +
     '');
-	a.put('', '<span class="checkbox__help" ng-transclude></span>\n' +
+	a.put('/modules/checkbox/views/checkbox-help.html', '<span class="checkbox__help" ng-transclude></span>\n' +
     '');
-	 }]);
-angular.module("lumx.radio-button").run(['$templateCache', function(a) { a.put('', '<div class="radio-group" ng-transclude></div>\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.radio-button"); } catch (e) { m = angular.module("lumx.radio-button", []); } m.run(['$templateCache', function(a) { a.put('/modules/radio-button/views/radio-group.html', '<div class="radio-group" ng-transclude></div>\n' +
     '');
-	a.put('', '<div class="radio-button radio-button--{{ lxRadioButton.lxColor }}">\n' +
+	a.put('/modules/radio-button/views/radio-button.html', '<div class="radio-button radio-button--{{ lxRadioButton.lxColor }}">\n' +
     '    <input id="{{ lxRadioButton.getRadioButtonId() }}"\n' +
     '           type="radio"\n' +
     '           class="radio-button__input"\n' +
@@ -4870,16 +4870,16 @@ angular.module("lumx.radio-button").run(['$templateCache', function(a) { a.put('
     '    <ng-transclude-replace ng-if="lxRadioButton.getRadioButtonHasChildren()"></ng-transclude-replace>\n' +
     '</div>\n' +
     '');
-	a.put('', '<label for="{{ lxRadioButtonLabel.getRadioButtonId() }}" class="radio-button__label" ng-transclude></label>\n' +
+	a.put('/modules/radio-button/views/radio-button-label.html', '<label for="{{ lxRadioButtonLabel.getRadioButtonId() }}" class="radio-button__label" ng-transclude></label>\n' +
     '');
-	a.put('', '<span class="radio-button__help" ng-transclude></span>\n' +
+	a.put('/modules/radio-button/views/radio-button-help.html', '<span class="radio-button__help" ng-transclude></span>\n' +
     '');
-	 }]);
-angular.module("lumx.switch").run(['$templateCache', function(a) { a.put('', '<label for="{{ lxSwitchLabel.getSwitchId() }}" class="switch__label" ng-transclude></label>\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.switch"); } catch (e) { m = angular.module("lumx.switch", []); } m.run(['$templateCache', function(a) { a.put('/modules/switch/views/switch_label.html', '<label for="{{ lxSwitchLabel.getSwitchId() }}" class="switch__label" ng-transclude></label>\n' +
     '');
-	a.put('', '<span class="switch__help" ng-transclude></span>\n' +
+	a.put('/modules/switch/views/switch_help.html', '<span class="switch__help" ng-transclude></span>\n' +
     '');
-	a.put('', '<div class="switch switch--{{ lxSwitch.lxColor }}">\n' +
+	a.put('/modules/switch/views/switch.html', '<div class="switch switch--{{ lxSwitch.lxColor }}">\n' +
     '    <input id="{{ lxSwitch.getSwitchId() }}"\n' +
     '           type="checkbox"\n' +
     '           class="switch__input"\n' +
@@ -4894,8 +4894,8 @@ angular.module("lumx.switch").run(['$templateCache', function(a) { a.put('', '<l
     '    <ng-transclude-replace ng-if="lxSwitch.getSwitchHasChildren()"></ng-transclude-replace>\n' +
     '</div>\n' +
     '');
-	 }]);
-angular.module("lumx.fab").run(['$templateCache', function(a) { a.put('', '<div class="fab">\n' +
+	 }]); })();
++(function() { var m; try { m = angular.module("lumx.fab"); } catch (e) { m = angular.module("lumx.fab", []); } m.run(['$templateCache', function(a) { a.put('/modules/fab/views/fab.html', '<div class="fab">\n' +
     '    <ng-transclude-replace></ng-transclude-replace>\n' +
     '\n' +
     '    <lx-progress class="fab__progress"\n' +
@@ -4903,8 +4903,8 @@ angular.module("lumx.fab").run(['$templateCache', function(a) { a.put('', '<div 
     '                 ng-if="lxFab.lxFabProgress"></lx-progress>\n' +
     '</div>\n' +
     '');
-	a.put('', '<div class="fab__primary" ng-transclude></div>\n' +
+	a.put('/modules/fab/views/fab-trigger.html', '<div class="fab__primary" ng-transclude></div>\n' +
     '');
-	a.put('', '<div class="fab__actions fab__actions--{{ parentCtrl.lxDirection }}" ng-transclude></div>\n' +
+	a.put('/modules/fab/views/fab-actions.html', '<div class="fab__actions fab__actions--{{ parentCtrl.lxDirection }}" ng-transclude></div>\n' +
     '');
-	 }]);
+	 }]); })();
